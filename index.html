@@ -346,8 +346,9 @@ async function loadLibrary(){
       const files = await github(folder.name);
 
       const documents = files
-       .filter(item =>
-    item.type === "file"
+        .filter(item =>
+          item.type === "file" &&
+          /\.(pdf|xlsx|xls)$/i.test(item.name)
         )
         .map(item => ({
           category: folder.name,
@@ -464,37 +465,35 @@ function renderLibrary(documents){
 
                 <div class="actions">
 
-${(() => {
-    const file = doc.filename.toLowerCase();
+                  ${
+                    doc.type === "pdf"
+                    ?
+                    `<button
+                      class="view"
+                      onclick='openPDF(${JSON.stringify(doc.url)},${JSON.stringify(doc.name)})'
+                    >
+                      View
+                    </button>`
+                    :
+                    `<a
+                      class="btn download"
+                      href="${doc.url}"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Open
+                    </a>`
+                  }
 
-    const canView =
-        /\.(pdf|jpg|jpeg|png|webp|gif|bmp|svg|mp4|webm|mov|mp3|wav|m4a|txt|csv|doc|docx|xls|xlsx|ppt|pptx)$/i.test(file);
-
-    if (!canView) return "";
-
-    const url = JSON.stringify(doc.url).replace(/'/g, "&#39;");
-    const name = JSON.stringify(doc.name).replace(/'/g, "&#39;");
-    const filename = JSON.stringify(doc.filename).replace(/'/g, "&#39;");
-
-    return `
-        <button
-            class="view"
-            onclick='openPDF(${url},${name},${filename})'
-        >
-            View
-        </button>
-    `;
-})()}
-
-<a
-    class="btn download"
-    href="${doc.url}"
-    target="_blank"
-    rel="noopener"
-    download
->
-    Download
-</a>
+                  <a
+                    class="btn download"
+                    href="${doc.url}"
+                    target="_blank"
+                    rel="noopener"
+                    download
+                  >
+                    Download
+                  </a>
 
                 </div>
 
@@ -513,44 +512,14 @@ ${(() => {
 
 
 /* PDF viewer */
-function openPDF(url, title, filename){
+function openPDF(url,title){
 
-    document.getElementById("viewerTitle").textContent = title;
+  document.getElementById("viewerTitle").textContent = title;
 
-    const file = filename.toLowerCase();
+ document.getElementById("pdfViewer").src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(url);
+  document.getElementById("viewer").classList.add("active");
 
-    let viewerUrl = url;
-
-    // PDF
-    if (file.endsWith(".pdf")) {
-
-        viewerUrl =
-            "https://mozilla.github.io/pdf.js/web/viewer.html?file=" +
-            encodeURIComponent(url);
-
-    }
-
-    // Word / Excel / PowerPoint
-    else if (/\.(doc|docx|xls|xlsx|ppt|pptx)$/i.test(file)) {
-
-        viewerUrl =
-            "https://view.officeapps.live.com/op/view.aspx?src=" +
-            encodeURIComponent(url);
-
-    }
-
-    // Images, video, audio and text
-    else {
-
-        viewerUrl = url;
-
-    }
-
-    document.getElementById("pdfViewer").src = viewerUrl;
-
-    document.getElementById("viewer").classList.add("active");
-
-    document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
 }
 
 
