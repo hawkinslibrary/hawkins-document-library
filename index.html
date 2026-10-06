@@ -464,22 +464,26 @@ function renderLibrary(documents){
 
                 <div class="actions">
 
- ${(() => {
+${(() => {
     const file = doc.filename.toLowerCase();
 
     const canView =
         /\.(pdf|jpg|jpeg|png|webp|gif|bmp|svg|mp4|webm|mov|mp3|wav|m4a|txt|csv|doc|docx|xls|xlsx|ppt|pptx)$/i.test(file);
 
-    return canView
-        ? `
-            <button
-                class="view"
-               onclick='openPDF(${JSON.stringify(doc.url)},${JSON.stringify(doc.name)},${JSON.stringify(doc.filename)})'
-            >
-                View
-            </button>
-        `
-        : "";
+    if (!canView) return "";
+
+    const url = JSON.stringify(doc.url).replace(/'/g, "&#39;");
+    const name = JSON.stringify(doc.name).replace(/'/g, "&#39;");
+    const filename = JSON.stringify(doc.filename).replace(/'/g, "&#39;");
+
+    return `
+        <button
+            class="view"
+            onclick='openPDF(${url},${name},${filename})'
+        >
+            View
+        </button>
+    `;
 })()}
 
 <a
