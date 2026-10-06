@@ -346,9 +346,8 @@ async function loadLibrary(){
       const files = await github(folder.name);
 
       const documents = files
-        .filter(item =>
-          item.type === "file" &&
-          /\.(pdf|xlsx|xls)$/i.test(item.name)
+       .filter(item =>
+    item.type === "file"
         )
         .map(item => ({
           category: folder.name,
@@ -465,35 +464,33 @@ function renderLibrary(documents){
 
                 <div class="actions">
 
-                  ${
-                    doc.type === "pdf"
-                    ?
-                    `<button
-                      class="view"
-                      onclick='openPDF(${JSON.stringify(doc.url)},${JSON.stringify(doc.name)})'
-                    >
-                      View
-                    </button>`
-                    :
-                    `<a
-                      class="btn download"
-                      href="${doc.url}"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      Open
-                    </a>`
-                  }
+ ${(() => {
+    const file = doc.filename.toLowerCase();
 
-                  <a
-                    class="btn download"
-                    href="${doc.url}"
-                    target="_blank"
-                    rel="noopener"
-                    download
-                  >
-                    Download
-                  </a>
+    const canView =
+        /\.(pdf|jpg|jpeg|png|webp|gif|bmp|svg|mp4|webm|mov|mp3|wav|m4a|txt|csv|doc|docx|xls|xlsx|ppt|pptx)$/i.test(file);
+
+    return canView
+        ? `
+            <button
+                class="view"
+                onclick="openPDF(${JSON.stringify(doc.url)},${JSON.stringify(doc.name)},${JSON.stringify(doc.filename)})"
+            >
+                View
+            </button>
+        `
+        : "";
+})()}
+
+<a
+    class="btn download"
+    href="${doc.url}"
+    target="_blank"
+    rel="noopener"
+    download
+>
+    Download
+</a>
 
                 </div>
 
@@ -512,14 +509,44 @@ function renderLibrary(documents){
 
 
 /* PDF viewer */
-function openPDF(url,title){
+function openPDF(url, title, filename){
 
-  document.getElementById("viewerTitle").textContent = title;
+    document.getElementById("viewerTitle").textContent = title;
 
- document.getElementById("pdfViewer").src = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(url);
-  document.getElementById("viewer").classList.add("active");
+    const file = filename.toLowerCase();
 
-  document.body.style.overflow = "hidden";
+    let viewerUrl = url;
+
+    // PDF
+    if (file.endsWith(".pdf")) {
+
+        viewerUrl =
+            "https://mozilla.github.io/pdf.js/web/viewer.html?file=" +
+            encodeURIComponent(url);
+
+    }
+
+    // Word / Excel / PowerPoint
+    else if (/\.(doc|docx|xls|xlsx|ppt|pptx)$/i.test(file)) {
+
+        viewerUrl =
+            "https://view.officeapps.live.com/op/view.aspx?src=" +
+            encodeURIComponent(url);
+
+    }
+
+    // Images, video, audio and text
+    else {
+
+        viewerUrl = url;
+
+    }
+
+    document.getElementById("pdfViewer").src = viewerUrl;
+
+    document.getElementById("viewer").classList.add("active");
+
+    document.body.style.overflow = "hidden";
 }
 
 
