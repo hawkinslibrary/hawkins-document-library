@@ -516,7 +516,7 @@ function openPDF(url,title){
 
   document.getElementById("viewerTitle").textContent = title;
 
-  document.getElementById("pdfViewer").src = url;
+  document.getElementById("pdfViewer").src = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(url);
 
   document.getElementById("viewer").classList.add("active");
 
