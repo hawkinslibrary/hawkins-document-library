@@ -485,8 +485,7 @@ const pagesUrl = url.replace(
   "https://hawkinslibrary.github.io/hawkins-document-library/"
 );
 
-document.getElementById("pdfViewer").src =
-"https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(pagesUrl);
+document.getElementById("pdfViewer").src = pagesUrl;
 
   document.getElementById("viewer").classList.add("active");
 
