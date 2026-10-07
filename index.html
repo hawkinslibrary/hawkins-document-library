@@ -1,114 +1,580 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hawkins Document Library</title>
+
 <style>
-:root{--red:#d71920;--dark:#171717;--muted:#6b7280;--bg:#f5f6f8;--card:#fff;--line:#e5e7eb}
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--dark)}
-header{background:linear-gradient(135deg,#b90f17,#e21b23);color:#fff;padding:34px 20px 30px}
-.wrap{max-width:1100px;margin:auto}
-.brand{font-weight:800;letter-spacing:.08em;font-size:13px;opacity:.9}
-h1{margin:8px 0 4px;font-size:32px}
-.sub{opacity:.9}
-.search{margin-top:22px;width:100%;padding:14px 16px;border:0;border-radius:12px;font-size:16px;outline:0}
-main{padding:26px 20px 50px}
-.category{margin:0 0 24px}
-.cathead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.cathead h2{margin:0;font-size:21px}
-.count{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:5px 9px;border-radius:999px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.icon{font-size:25px}
-.title{font-weight:700;margin:10px 0 6px;line-height:1.3}
-.meta{font-size:12px;color:var(--muted);min-height:32px}
-.actions{display:flex;gap:8px;margin-top:14px}
-button,.btn{appearance:none;border:0;border-radius:9px;padding:9px 12px;font-weight:700;cursor:pointer;text-decoration:none;font-size:13px}
-.view{background:var(--red);color:#fff}
-.download{background:#f0f1f3;color:#222}
-.empty{display:none;text-align:center;padding:40px;color:var(--muted)}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;z-index:20;padding:18px}
-.modal.open{display:flex;flex-direction:column}
-.modalbar{display:flex;align-items:center;justify-content:space-between;color:#fff;margin-bottom:10px}
-.modalbar button{background:#fff;color:#111}
-iframe{width:100%;height:calc(100vh - 75px);border:0;border-radius:10px;background:#fff}
-@media(max-width:600px){h1{font-size:26px}.grid{grid-template-columns:1fr}}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f5f6f8;
+  color:#171717;
+}
+
+header{
+  background:linear-gradient(135deg,#e50909,#ff2020);
+  color:white;
+  padding:30px 20px 28px;
+}
+
+.wrap{
+  max-width:1200px;
+  margin:auto;
+}
+
+.brand{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+  opacity:.9;
+}
+
+h1{
+  margin:5px 0 4px;
+  font-size:30px;
+}
+
+.subtitle{
+  margin:0;
+  opacity:.9;
+  font-size:14px;
+}
+
+.search{
+  margin-top:20px;
+  width:100%;
+  padding:14px 16px;
+  border:0;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+}
+
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:28px 20px 60px;
+}
+
+.category{
+  margin-bottom:30px;
+}
+
+.category-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.category h2{
+  margin:0;
+  font-size:21px;
+}
+
+.count{
+  font-size:12px;
+  color:#777;
+  background:white;
+  padding:5px 10px;
+  border-radius:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:14px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e4e5e8;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+  transition:.15s;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.icon{
+  font-size:25px;
+  margin-bottom:9px;
+}
+
+.title{
+  font-weight:700;
+  font-size:15px;
+  line-height:1.35;
+  margin-bottom:5px;
+}
+
+.filename{
+  color:#888;
+  font-size:11px;
+  word-break:break-word;
+  min-height:30px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+
+button,.btn{
+  border:0;
+  border-radius:8px;
+  padding:8px 12px;
+  font-size:13px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.view{
+  background:#e50909;
+  color:white;
+}
+
+.download{
+  background:#eeeeee;
+  color:#222;
+}
+
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  color:#777;
+}
+
+.loading{
+  text-align:center;
+  padding:50px;
+  color:#777;
+}
+
+/* Viewer */
+
+.viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  z-index:1000;
+  display:none;
+  flex-direction:column;
+}
+
+.viewer.active{
+  display:flex;
+}
+
+.viewer-top{
+  height:55px;
+  background:#202020;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+}
+
+.viewer-title{
+  font-size:14px;
+  font-weight:600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.close{
+  background:#444;
+  color:white;
+  font-size:14px;
+  padding:8px 14px;
+}
+
+.viewer iframe{
+  width:100%;
+  height:calc(100vh - 55px);
+  border:0;
+  background:white;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+  header{
+    padding:24px 15px;
+  }
+
+  h1{
+    font-size:25px;
+  }
+
+  main{
+    padding:22px 14px 45px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .card{
+    padding:12px;
+  }
+
+  .title{
+    font-size:13px;
+  }
+
+  .filename{
+    font-size:10px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  button,.btn{
+    width:100%;
+    text-align:center;
+  }
+}
 </style>
 </head>
-<body>
-<header><div class="wrap">
-<div class="brand">HAWKINS COOKERS</div>
-<h1>Document Library</h1>
-<div class="sub">October 2026 • Dealer schemes, agreements & price lists</div>
-<input id="search" class="search" placeholder="Search documents…">
-</div></header>
-<main class="wrap" id="library"></main>
-<div id="empty" class="empty">No matching documents found.</div>
-<footer>Hawkins Document Library • Maintained by Hawkins Library</footer>
 
-<div id="modal" class="modal">
-  <div class="modalbar"><strong id="modalTitle"></strong><button onclick="closeViewer()">Close ✕</button></div>
-  <iframe id="viewer" title="PDF viewer"></iframe>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">HAWKINS COOKERS</div>
+    <h1>Document Library</h1>
+    <p class="subtitle">Dealer schemes, agreements & price lists</p>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Search documents..."
+      oninput="filterDocuments()"
+    >
+  </div>
+</header>
+
+<main id="library">
+  <div class="loading">Loading documents...</div>
+</main>
+
+<div id="viewer" class="viewer">
+  <div class="viewer-top">
+    <div id="viewerTitle" class="viewer-title"></div>
+    <button class="close" onclick="closeViewer()">Close ✕</button>
+  </div>
+
+  <iframe id="pdfViewer"></iframe>
 </div>
 
 <script>
-const docs = [{"category": "MAS", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "MAS/MAS OCT_121956.pdf", "filename": "MAS OCT_121956.pdf"}, {"category": "MAS", "title": "Display Scheme", "file": "MAS/MAS DISP_121952.pdf", "filename": "MAS DISP_121952.pdf"}, {"category": "MAS", "title": "Festival Gift Scheme", "file": "MAS/MAS, HAM, FRS GIFT_122000.pdf", "filename": "MAS, HAM, FRS GIFT_122000.pdf"}, {"category": "FRS", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "FRS/FRS OCT_121904.pdf", "filename": "FRS OCT_121904.pdf"}, {"category": "FRS", "title": "Display Scheme (shared)", "file": "FRS/MAS DISP_121952.pdf", "filename": "MAS DISP_121952.pdf"}, {"category": "FRS", "title": "Festival Gift Scheme (shared)", "file": "FRS/MAS, HAM, FRS GIFT_122000.pdf", "filename": "MAS, HAM, FRS GIFT_122000.pdf"}, {"category": "HAM", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "HAM/HAM OCT_121913.pdf", "filename": "HAM OCT_121913.pdf"}, {"category": "HAM", "title": "Display Scheme (shared)", "file": "HAM/MAS DISP_121952.pdf", "filename": "MAS DISP_121952.pdf"}, {"category": "HAM", "title": "Festival Gift Scheme (shared)", "file": "HAM/MAS, HAM, FRS GIFT_122000.pdf", "filename": "MAS, HAM, FRS GIFT_122000.pdf"}, {"category": "HAS", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "HAS/HAS OCT_121935.pdf", "filename": "HAS OCT_121935.pdf"}, {"category": "HAS", "title": "Display Scheme", "file": "HAS/HAS DISP_121932.pdf", "filename": "HAS DISP_121932.pdf"}, {"category": "HAS", "title": "Festival Gift Scheme", "file": "HAS/HAS, HAW GIFT_121939.pdf", "filename": "HAS, HAW GIFT_121939.pdf"}, {"category": "HAW", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "HAW/HAW OCT_121947.pdf", "filename": "HAW OCT_121947.pdf"}, {"category": "HAW", "title": "Display Scheme", "file": "HAW/HAW DISP_121943.pdf", "filename": "HAW DISP_121943.pdf"}, {"category": "HAW", "title": "Festival Gift Scheme (shared)", "file": "HAW/HAS, HAW GIFT_121939.pdf", "filename": "HAS, HAW GIFT_121939.pdf"}, {"category": "HAR", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "HAR/HAR OCT_121924.pdf", "filename": "HAR OCT_121924.pdf"}, {"category": "HAR", "title": "Display Scheme — October to December 2026", "file": "HAR/HAR DISP.pdf", "filename": "HAR DISP.pdf"}, {"category": "HAR", "title": "Festival Gift Scheme", "file": "HAR/HAR,ODD GIFT_121928.pdf", "filename": "HAR,ODD GIFT_121928.pdf"}, {"category": "ODD", "title": "October 2026 Monthly Sales Promotion Scheme", "file": "ODD/ODD OCT_122003.pdf", "filename": "ODD OCT_122003.pdf"}, {"category": "ODD", "title": "Festival Gift Scheme (shared)", "file": "ODD/HAR,ODD GIFT_121928.pdf", "filename": "HAR,ODD GIFT_121928.pdf"}, {"category": "Agreements", "title": "HAR Agreement", "file": "Agreements/HAR AGREEMENT_121918.pdf", "filename": "HAR AGREEMENT_121918.pdf"}, {"category": "Agreements", "title": "Hawkins Wall Agreement", "file": "Agreements/HAWKINS WALL AGREEMENT_121951.pdf", "filename": "HAWKINS WALL AGREEMENT_121951.pdf"}, {"category": "Price List", "title": "Price List — PDF (July 2026)", "file": "Price List/PriceList July (1).pdf", "filename": "PriceList July (1).pdf"}, {"category": "Price List", "title": "Price List — Excel (July 2026)", "file": "Price List/EXCEL PRICELIST.xlsx", "filename": "EXCEL PRICELIST.xlsx"}];
-const order = ["MAS","FRS","HAM","HAS","HAW","HAR","ODD","Agreements","Price List"];
-const library = document.getElementById("library");
-const empty = document.getElementById("empty");
-const search = document.getElementById("search");
 
-function esc(s) {
-  return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-function encPath(p) {
-  return p.split("/").map(encodeURIComponent).join("/");
-}
-function render(filter="") {
-  const q = filter.trim().toLowerCase();
-  library.innerHTML = "";
-  let shown = 0;
-  for (const cat of order) {
-    const items = docs.filter(d => d.category === cat && (!q || (d.title+" "+d.category+" "+d.filename).toLowerCase().includes(q)));
-    if (!items.length) continue;
-    shown += items.length;
-    const section = document.createElement("section");
-    section.className = "category";
-    section.innerHTML = `<div class="cathead"><h2>${esc(cat)}</h2><span class="count">${items.length} document${items.length===1?"":"s"}</span></div><div class="grid"></div>`;
-    const grid = section.querySelector(".grid");
-    items.forEach(d => {
-      const url = encPath(d.file);
-      const isXlsx = d.filename.toLowerCase().endsWith(".xlsx");
-      const card = document.createElement("article");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="icon">${isXlsx ? "📊" : "📄"}</div>
-        <div class="title">${esc(d.title)}</div>
-        <div class="meta">${esc(d.filename)}</div>
-        <div class="actions">
-          ${isXlsx ? "" : `<button class="view" onclick='openViewer(${JSON.stringify(url)},${JSON.stringify(d.title)})'>View</button>`}
-          <a class="btn download" href="${url}" download>Download</a>
-        </div>`;
-      grid.appendChild(card);
-    });
-    library.appendChild(section);
+const OWNER = "hawkinslibrary";
+const REPO = "hawkins-document-library";
+const BRANCH = "main";
+
+/* Keep your preferred order */
+const CATEGORY_ORDER = [
+  "MAS",
+  "FRS",
+  "HAM",
+  "HAS",
+  "HAW",
+  "HAR",
+  "ODD",
+  "Agreements",
+  "Price List"
+];
+
+let allDocuments = [];
+
+
+/* GitHub API */
+async function github(path=""){
+  const url =
+    `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`;
+
+  const response = await fetch(url);
+
+  if(!response.ok){
+    throw new Error("Unable to read GitHub repository");
   }
-  empty.style.display = shown ? "none" : "block";
+
+  return await response.json();
 }
-function openViewer(url,title) {
-  document.getElementById("viewer").src = url;
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modal").classList.add("open");
+
+
+/* Load folders and files automatically */
+async function loadLibrary(){
+
+  const library = document.getElementById("library");
+
+  try{
+
+    const root = await github("");
+
+    const folders = root
+      .filter(item => item.type === "dir")
+      .sort((a,b)=>{
+        const ai = CATEGORY_ORDER.indexOf(a.name);
+        const bi = CATEGORY_ORDER.indexOf(b.name);
+
+        return (ai === -1 ? 999 : ai) -
+               (bi === -1 ? 999 : bi);
+      });
+
+    allDocuments = [];
+
+    for(const folder of folders){
+
+      const files = await github(folder.name);
+
+      const documents = files
+        .filter(item =>
+          item.type === "file" &&
+          /\.(pdf|xlsx|xls)$/i.test(item.name)
+        )
+        .map(item => ({
+          category: folder.name,
+          name: cleanName(item.name),
+          filename: item.name,
+          url: item.download_url,
+          htmlUrl: item.html_url,
+          type: getType(item.name)
+        }));
+
+      if(documents.length){
+        allDocuments.push(...documents);
+      }
+    }
+
+    renderLibrary(allDocuments);
+
+  }catch(error){
+
+    library.innerHTML = `
+      <div class="empty">
+        <h3>Unable to load documents</h3>
+        <p>Please refresh the page.</p>
+      </div>
+    `;
+
+    console.error(error);
+  }
 }
-function closeViewer() {
-  document.getElementById("viewer").src = "";
-  document.getElementById("modal").classList.remove("open");
+
+
+/* Make filenames look nicer */
+function cleanName(filename){
+
+  let name = filename
+    .replace(/\.(pdf|xlsx|xls)$/i,"")
+    .replace(/[_-]+/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+
+  /* Remove old timestamp-style endings */
+  name = name.replace(/\s+\d{5,}$/,"");
+
+  return name;
 }
-search.addEventListener("input", e => render(e.target.value));
-render();
+
+
+/* File type */
+function getType(filename){
+
+  if(/\.pdf$/i.test(filename)){
+    return "pdf";
+  }
+
+  return "excel";
+}
+
+
+/* Render everything */
+function renderLibrary(documents){
+
+  const library = document.getElementById("library");
+
+  if(!documents.length){
+    library.innerHTML = `
+      <div class="empty">
+        No documents found.
+      </div>
+    `;
+    return;
+  }
+
+  const categories = [...new Set(
+    documents.map(d => d.category)
+  )];
+
+  library.innerHTML = categories.map(category => {
+
+    const docs = documents.filter(
+      d => d.category === category
+    );
+
+    return `
+      <section class="category">
+
+        <div class="category-head">
+          <h2>${escapeHTML(category)}</h2>
+          <span class="count">
+            ${docs.length} document${docs.length === 1 ? "" : "s"}
+          </span>
+        </div>
+
+        <div class="grid">
+
+          ${docs.map((doc,index) => {
+
+            const id = `${category}-${index}`
+              .replace(/[^a-zA-Z0-9-_]/g,"");
+
+            return `
+              <article class="card">
+
+                <div class="icon">
+                  ${doc.type === "pdf" ? "📄" : "📊"}
+                </div>
+
+                <div class="title">
+                  ${escapeHTML(doc.name)}
+                </div>
+
+                <div class="filename">
+                  ${escapeHTML(doc.filename)}
+                </div>
+
+                <div class="actions">
+
+                  ${
+                    doc.type === "pdf"
+                    ?
+                    `<button
+                      class="view"
+                      onclick='openPDF(${JSON.stringify(doc.url)},${JSON.stringify(doc.name)})'
+                    >
+                      View
+                    </button>`
+                    :
+                    `<a
+                      class="btn download"
+                      href="${doc.url}"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Open
+                    </a>`
+                  }
+
+                  <a
+                    class="btn download"
+                    href="${doc.url}"
+                    target="_blank"
+                    rel="noopener"
+                    download
+                  >
+                    Download
+                  </a>
+
+                </div>
+
+              </article>
+            `;
+
+          }).join("")}
+
+        </div>
+
+      </section>
+    `;
+
+  }).join("");
+}
+
+
+/* PDF viewer */
+function openPDF(url,title){
+
+  document.getElementById("viewerTitle").textContent = title;
+
+  document.getElementById("pdfViewer").src = url;
+
+  document.getElementById("viewer").classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeViewer(){
+
+  document.getElementById("viewer").classList.remove("active");
+
+  document.getElementById("pdfViewer").src = "";
+
+  document.body.style.overflow = "";
+}
+
+
+/* Search */
+function filterDocuments(){
+
+  const query =
+    document.getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  if(!query){
+
+    renderLibrary(allDocuments);
+    return;
+  }
+
+  const filtered = allDocuments.filter(doc =>
+    doc.name.toLowerCase().includes(query) ||
+    doc.filename.toLowerCase().includes(query) ||
+    doc.category.toLowerCase().includes(query)
+  );
+
+  renderLibrary(filtered);
+}
+
+
+/* Prevent HTML injection */
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* Start */
+loadLibrary();
+
 </script>
+
 </body>
 </html>
