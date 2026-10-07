@@ -480,8 +480,13 @@ function openPDF(url,title){
 
   document.getElementById("viewerTitle").textContent = title;
 
+const pagesUrl = url.replace(
+  "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/",
+  "https://hawkinslibrary.github.io/hawkins-document-library/"
+);
+
 document.getElementById("pdfViewer").src =
-"https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(url);
+"https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(pagesUrl);
 
   document.getElementById("viewer").classList.add("active");
 
