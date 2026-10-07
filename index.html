@@ -305,64 +305,28 @@ const CATEGORY_ORDER = [
 let allDocuments = [];
 
 
-/* GitHub API */
-async function github(path=""){
-  const url =
-    `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`;
-
-  const response = await fetch(url);
-
-  if(!response.ok){
-    throw new Error("Unable to read GitHub repository");
-  }
-
-  return await response.json();
-}
-
-
-/* Load folders and files automatically */
+/* Static file manifest */
 async function loadLibrary(){
 
   const library = document.getElementById("library");
 
   try{
 
-    const root = await github("");
+    const response = await fetch("files.json?ts=" + Date.now(), {
+      cache: "no-store"
+    });
 
-    const folders = root
-      .filter(item => item.type === "dir")
-      .sort((a,b)=>{
-        const ai = CATEGORY_ORDER.indexOf(a.name);
-        const bi = CATEGORY_ORDER.indexOf(b.name);
-
-        return (ai === -1 ? 999 : ai) -
-               (bi === -1 ? 999 : bi);
-      });
-
-    allDocuments = [];
-
-    for(const folder of folders){
-
-      const files = await github(folder.name);
-
-      const documents = files
-        .filter(item =>
-          item.type === "file" &&
-          /\.(pdf|xlsx|xls)$/i.test(item.name)
-        )
-        .map(item => ({
-          category: folder.name,
-          name: cleanName(item.name),
-          filename: item.name,
-          url: item.download_url,
-          htmlUrl: item.html_url,
-          type: getType(item.name)
-        }));
-
-      if(documents.length){
-        allDocuments.push(...documents);
-      }
+    if(!response.ok){
+      throw new Error("Unable to load files.json");
     }
+
+    const manifest = await response.json();
+
+    allDocuments = manifest.map(item => ({
+      ...item,
+      name: cleanName(item.filename),
+      type: getType(item.filename)
+    }));
 
     renderLibrary(allDocuments);
 
