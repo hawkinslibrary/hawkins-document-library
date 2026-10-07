@@ -516,7 +516,9 @@ function openPDF(url,title){
 
   document.getElementById("viewerTitle").textContent = title;
 
-  document.getElementById("pdfViewer").src = url;
+document.getElementById("pdfViewer").src =
+"https://mozilla.github.io/pdf.js/web/viewer.html?file=" +
+encodeURIComponent(url);
 
   document.getElementById("viewer").classList.add("active");
 
