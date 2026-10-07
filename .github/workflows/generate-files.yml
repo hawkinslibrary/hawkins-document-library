@@ -1,0 +1,80 @@
+name: Update document list
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - files.json
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository files
+        uses: actions/checkout@v4
+
+      - name: Generate files.json
+        env:
+          REPO: hawkinslibrary/hawkins-document-library
+          BRANCH: main
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import quote
+
+          repo = "hawkinslibrary/hawkins-document-library"
+          branch = "main"
+          categories = [
+              "MAS", "FRS", "HAM", "HAS", "HAW", "HAR", "ODD",
+              "Agreements", "Price List"
+          ]
+          allowed = {".pdf", ".xlsx", ".xls"}
+          documents = []
+
+          for category in categories:
+              folder = Path(category)
+              if not folder.is_dir():
+                  continue
+
+              for path in sorted(folder.iterdir(), key=lambda p: p.name.lower()):
+                  if not path.is_file() or path.suffix.lower() not in allowed:
+                      continue
+
+                  filename = path.name
+                  rel_category = quote(category, safe="")
+                  rel_filename = quote(filename, safe="")
+                  url = f"https://raw.githubusercontent.com/{repo}/{branch}/{rel_category}/{rel_filename}"
+                  html_url = f"https://github.com/{repo}/blob/{branch}/{rel_category}/{rel_filename}"
+
+                  documents.append({
+                      "category": category,
+                      "name": filename.rsplit('.', 1)[0],
+                      "filename": filename,
+                      "url": url,
+                      "htmlUrl": html_url,
+                      "type": "pdf" if path.suffix.lower() == ".pdf" else "excel"
+                  })
+
+          Path("files.json").write_text(
+              json.dumps(documents, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8"
+          )
+          PY
+
+      - name: Save updated document list
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add files.json
+          if git diff --cached --quiet; then
+            echo "No changes to files.json"
+            exit 0
+          fi
+          git commit -m "Update document list [skip ci]"
+          git push
