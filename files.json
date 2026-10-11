@@ -198,13 +198,5 @@
     "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/Price%20List/EXCEL%20PRICELIST.xlsx",
     "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/Price%20List/EXCEL%20PRICELIST.xlsx",
     "type": "excel"
-  },
-  {
-    "category": "Price List",
-    "name": "PriceList July (1)",
-    "filename": "PriceList July (1).pdf",
-    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/Price%20List/PriceList%20July%20%281%29.pdf",
-    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/Price%20List/PriceList%20July%20%281%29.pdf",
-    "type": "pdf"
   }
 ]
