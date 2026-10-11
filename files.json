@@ -198,5 +198,13 @@
     "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/Price%20List/EXCEL%20PRICELIST.xlsx",
     "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/Price%20List/EXCEL%20PRICELIST.xlsx",
     "type": "excel"
+  },
+  {
+    "category": "Price List",
+    "name": "Pricelist October 2026",
+    "filename": "Pricelist October 2026.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/Price%20List/Pricelist%20October%202026.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/Price%20List/Pricelist%20October%202026.pdf",
+    "type": "pdf"
   }
 ]
