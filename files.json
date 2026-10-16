@@ -201,6 +201,14 @@
   },
   {
     "category": "Price List",
+    "name": "Draft Parts Pricelist",
+    "filename": "Draft Parts Pricelist.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/Price%20List/Draft%20Parts%20Pricelist.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/Price%20List/Draft%20Parts%20Pricelist.pdf",
+    "type": "pdf"
+  },
+  {
+    "category": "Price List",
     "name": "EXCEL PRICELIST",
     "filename": "EXCEL PRICELIST.xlsx",
     "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/Price%20List/EXCEL%20PRICELIST.xlsx",
