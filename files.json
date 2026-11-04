@@ -104,6 +104,14 @@
     "type": "pdf"
   },
   {
+    "category": "HAW",
+    "name": "NOV HAW",
+    "filename": "NOV HAW.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/HAW/NOV%20HAW.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/HAW/NOV%20HAW.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "HAR",
     "name": "HAR DISP",
     "filename": "HAR DISP.pdf",
