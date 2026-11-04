@@ -152,6 +152,14 @@
     "type": "pdf"
   },
   {
+    "category": "ODD",
+    "name": "NOV ODD",
+    "filename": "NOV ODD.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/ODD/NOV%20ODD.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/ODD/NOV%20ODD.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "Agreements",
     "name": "Conferences 2029",
     "filename": "Conferences 2029.pdf",
