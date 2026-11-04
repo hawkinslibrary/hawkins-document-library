@@ -32,6 +32,14 @@
     "type": "pdf"
   },
   {
+    "category": "FRS",
+    "name": "NOV FRS",
+    "filename": "NOV FRS.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/FRS/NOV%20FRS.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/FRS/NOV%20FRS.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "HAM",
     "name": "MAS DISP_121952",
     "filename": "MAS DISP_121952.pdf",
