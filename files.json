@@ -56,6 +56,14 @@
     "type": "pdf"
   },
   {
+    "category": "HAM",
+    "name": "NOV HAM",
+    "filename": "NOV HAM.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/HAM/NOV%20HAM.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/HAM/NOV%20HAM.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "HAS",
     "name": "HAS DISP_121932",
     "filename": "HAS DISP_121932.pdf",
