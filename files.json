@@ -112,6 +112,14 @@
     "type": "pdf"
   },
   {
+    "category": "HAR",
+    "name": "NOV HAR",
+    "filename": "NOV HAR.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/HAR/NOV%20HAR.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/HAR/NOV%20HAR.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "ODD",
     "name": "HAR,ODD GIFT_121928",
     "filename": "HAR,ODD GIFT_121928.pdf",
