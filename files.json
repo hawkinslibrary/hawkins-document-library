@@ -16,6 +16,14 @@
     "type": "pdf"
   },
   {
+    "category": "MAS",
+    "name": "NOV MAS",
+    "filename": "NOV MAS.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/MAS/NOV%20MAS.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/MAS/NOV%20MAS.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "FRS",
     "name": "MAS DISP_121952",
     "filename": "MAS DISP_121952.pdf",
