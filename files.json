@@ -80,6 +80,14 @@
     "type": "pdf"
   },
   {
+    "category": "HAS",
+    "name": "NOV HAS",
+    "filename": "NOV HAS.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/HAS/NOV%20HAS.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/HAS/NOV%20HAS.pdf",
+    "type": "pdf"
+  },
+  {
     "category": "HAW",
     "name": "HAS, HAW GIFT_121939",
     "filename": "HAS, HAW GIFT_121939.pdf",
