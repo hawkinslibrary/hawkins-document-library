@@ -49,6 +49,14 @@
   },
   {
     "category": "HAM",
+    "name": "HAM DISP",
+    "filename": "HAM DISP.pdf",
+    "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/HAM/HAM%20DISP.pdf",
+    "htmlUrl": "https://github.com/hawkinslibrary/hawkins-document-library/blob/main/HAM/HAM%20DISP.pdf",
+    "type": "pdf"
+  },
+  {
+    "category": "HAM",
     "name": "MAS, HAM, FRS GIFT_122000",
     "filename": "MAS, HAM, FRS GIFT_122000.pdf",
     "url": "https://raw.githubusercontent.com/hawkinslibrary/hawkins-document-library/main/HAM/MAS%2C%20HAM%2C%20FRS%20GIFT_122000.pdf",
